@@ -1,5 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+
+  .outer_wrapper
+    .hotel_wrapper
+      h2 Hotels
+        a(href="/all") (see all):
+
+      .hotel
+        .hotel_img
+          a(href="")
+            img(src="/images/hotels/hotel1.jpg")
+        .hotel_info
+          a(href="")
+            h3 Hotel 1
+          hr
+          p Start rating: 4
+          p Country: Jamaica
+          p Cost per night: 56
+
+  
+
+ 
+
+  
