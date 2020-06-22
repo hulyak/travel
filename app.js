@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 
@@ -11,6 +12,17 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+//Set up mongoose connection - add connection string
+//https://cloud.mongodb.com/v2/5ef11950c9de941d0dae9d68#security/database/users
+mongoose.connect('mongodb+srv://travel_admin:travel1@cluster0-8kaqo.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  });
+//promise library - bluebird
+mongoose.Promise = global.Promise;
+//check errors, on-EventListener and callback 
+mongoose.connection.on('error', (error) => console.error(error.message));
 //middleware
 app.use(logger('dev'));
 app.use(express.json());
