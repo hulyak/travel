@@ -4,13 +4,9 @@
 
 :heavy_check_mark: Node/NPM installed
 
-<<<<<<< HEAD
-:heavy_check_mark: Express generator 
-
-`sudo npm install express-generator -g`
-=======
 :heavy_check_mark: Express generator `sudo npm install express-generator -g`
->>>>>>> 24816547bf2755b9c19c2d3fc4f2ebe86eaa8c63
+
+:heavy_check_mark: Express generator `sudo npm install express-generator -g`
 
 :heavy_check_mark: cd into the directory the project you want to be in eg. `cd desktop`
 
