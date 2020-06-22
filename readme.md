@@ -3,10 +3,15 @@
 ## Set Up
 
 :heavy_check_mark: Node/NPM installed
+
 :heavy_check_mark: Express generator `sudo npm install express-generator -g`
+
 :heavy_check_mark: cd into the directory the project you want to be in eg. `cd desktop`
+
 :heavy_check_mark: create a new project `express travel --view=pug`
+
 :heavy_check_mark: start the app `npm start`
+
 :heavy_check_mark: navigate to `localhost:3000`, inside the bin/www folder port is default to 3000.
 
 
