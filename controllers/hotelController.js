@@ -18,3 +18,11 @@ exports.listAllHotels = (req, res) => {
   //login
 //   console.log('login middleware');
 // }
+
+//renders admin object 
+exports.adminPage = (req, res) => {
+  res.render('admin', {title : 'Admin'});
+}
+exports.createHotelGet = (req, res) => {
+  res.render('add_hotel', {title :'Add new hotel'});
+}
