@@ -24,7 +24,7 @@
 
 :heavy_check_mark: Access database information. Clusters -> Collections
 
-:heavy_check_mark: Overview -> Connect -> Connect you application -> Connection string Only.
+:heavy_check_mark: Overview -> Connect -> Connect your application -> Connection string Only.
 
 
 
@@ -37,9 +37,11 @@
  
 * Routes folder contains js files to handle urls. 
 
-* View folder contains templating engine/pug.(User interface)Layout.pug is the main pug template. Mixins are to reduce repetition.
+* Views folder contains templating engine/pug.(User interface)Layout.pug is the main pug template. Mixins are to reduce repetition.
 
 * App.js is the app starting point, main page that connects everything together.
   
 * MVC Pattern: Model-View-Controllers. Controllers folder generates the Express routes.
+
+* Models folder includes mongoose models. Good for saving data before sending off to the database.
  
