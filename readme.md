@@ -6,8 +6,6 @@
 
 :heavy_check_mark: Express generator `sudo npm install express-generator -g`
 
-:heavy_check_mark: Express generator `sudo npm install express-generator -g`
-
 :heavy_check_mark: cd into the directory the project you want to be in eg. `cd desktop`
 
 :heavy_check_mark: create a new project `express travel --view=pug`
