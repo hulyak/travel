@@ -35,5 +35,5 @@ const hotelSchema = new mongoose.Schema({
   }
 });
 
-//Export model 
+//Export model - 'Hotel' is the name for this model
 module.exports = mongoose.model('Hotel', hotelSchema);
