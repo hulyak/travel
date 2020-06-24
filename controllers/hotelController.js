@@ -9,7 +9,7 @@ exports.homePage = (req,res) => {
 exports.listAllHotels = async (req, res, next) => {
   try{   
     const allHotels = await Hotel.find({available:{$eq: true}}); //eq equality mongo, only query available hotels
-    res.render('all_hotels', {title : 'All Hotels', allHotels});
+    res.render('all_hotels', {title : 'All Hotels', allHotels}); //allHotels is a variable to use inside pug file
     // res.json(allHotels);
   }catch(error){
     next(errors);
@@ -28,13 +28,23 @@ exports.listAllHotels = async (req, res, next) => {
 //   console.log('login middleware');
 // }
 
+exports.listAllCountries = async (req, res, next) => {
+  try {
+    const allCountries = await Hotel.distinct('country'); //return distinct countries
+    res.render('all_countries', {title : 'Browse by country' , allCountries}); //render all_countries.pug
+  }catch(error){
+    next(error);
+  }
+};
+
 //renders admin object 
 exports.adminPage = (req, res) => {
   res.render('admin', {title : 'Admin'});
-}
+};
+
 exports.createHotelGet = (req, res) => {
   res.render('add_hotel', {title :'Add new hotel'});
-}
+};
 
 // hotel is saved as a collection in mongodb 
 exports.createHotelPost = async (req, res, next) => {
