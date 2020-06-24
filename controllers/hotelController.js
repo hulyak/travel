@@ -1,9 +1,9 @@
 const Hotel = require('../models/hotel');
 const { NotExtended } = require('http-errors');
 //separate logic
-exports.homePage = (req,res) => {
-  res.render('index', { title: 'Lets travel' });
-}
+// exports.homePage = (req,res) => {
+//   res.render('index', { title: 'Lets travel' });
+// }
 
 //return all the data from databse with find
 exports.listAllHotels = async (req, res, next) => {
@@ -36,6 +36,26 @@ exports.listAllCountries = async (req, res, next) => {
     next(error);
   }
 };
+
+// aggregation pipeline to filter home page
+exports.homePageFilters = async (req, res, next) => {
+  try{
+    const hotels = await Hotel.aggregate([
+      { $match : {available: true}}, //available ones only
+      { $sample : {size : 9}} //only return 9 hotels randomly
+    ]);
+    const countries = await Hotel.aggregate([
+      { $group: { _id : '$country' }},  //only return each country once
+      { $sample : {size : 9}} 
+    ]);
+    res.render('index', {countries, hotels})
+    // res.json(countries);
+  }catch(error){
+    next(error);
+  }
+};
+
+
 
 //renders admin object 
 exports.adminPage = (req, res) => {

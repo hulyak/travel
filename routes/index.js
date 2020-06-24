@@ -5,7 +5,7 @@ const hotelController = require("../controllers/hotelController");
 const hotel = require('../models/hotel');
 
 /* GET home page. */
-router.get('/', hotelController.homePage);
+router.get('/', hotelController.homePageFilters);
 
 router.get("/all", hotelController.listAllHotels);
 router.get("/countries" , hotelController.listAllCountries);
