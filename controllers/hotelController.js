@@ -5,8 +5,15 @@ exports.homePage = (req,res) => {
   res.render('index', { title: 'Lets travel' });
 }
 
-exports.listAllHotels = (req, res) => {
-  res.render('all_hotels', {title : 'All Hotels'});
+//return all the data from databse with find
+exports.listAllHotels = async (req, res, next) => {
+  try{   
+    const allHotels = await Hotel.find({available:{$eq: true}}); //eq equality mongo, only query available hotels
+    res.render('all_hotels', {title : 'All Hotels', allHotels});
+    // res.json(allHotels);
+  }catch(error){
+    next(errors);
+  }
 }
 
 // after signup -> next show login

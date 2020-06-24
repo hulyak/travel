@@ -2,7 +2,9 @@ extends layout
 include mixins/_hotel
 
 block content
-
-  .hotel_wrapper
-     +hotel
+  h2= title
+    each hotel in allHotels
+      .hotel_wrapper
+        +hotel(hotel)
+  //- p=allHotels[0].hotel_name 
 
