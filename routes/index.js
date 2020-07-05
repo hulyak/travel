@@ -11,6 +11,7 @@ const {
 router.get('/', hotelController.homePageFilters);
 
 router.get("/all", hotelController.listAllHotels);
+router.get('/all/:hotel', hotelController.hotelDetail);
 router.get("/countries", hotelController.listAllCountries);
 
 //ADMIN Routes:
