@@ -1,38 +1,15 @@
 //- submit hotel to database
 //-http://localhost:3000/admin/add
 extends layout 
+include mixins/_hotel_form
 
+//- create hotel upload form
+//- form fields/input name properties must match the model schema
+//- action to same page
 block content
   a(href="/admin")
     button(type="button" class="button_small") Back to Admin
   h2= title
-
-  //- create hotel upload form
-  //- form fields/input name properties must match the model schema
-  //- action to same page
-  form(action="" method="POST")
-    .form_input 
-      label(for="hotel_name") Hotel name:
-      input(type="text" name="hotel_name" required)
-    .form_input
-      label(for="hotel_description") Hotel description
-      textarea(name="hotel_description", id="hotel_description" cols="30", rows="10" required)
-    .form_input
-      label(for="image") Hotel image
-      input(type="file" name="image" id="image")
-    .form_input 
-      label(for="star_rating") Star rating:
-      input(type="number" name="star_rating" min="1" max="5" required)
-    .form_input 
-      label(for="country") Country:
-      input(type="text" name="country"  id="country" required)
-    .form_input 
-      label(for="cost_per_night") Cost per night:
-      input(type="number" name="cost_per_night" id="cost_per_night" required)
-    .form_input
-      label(for="available") Available:
-      input(type="radio" id="available" name="available" value="true" checked)
-      label(for="unavailable") Unavailable:
-      input(type="radio" id="unavailable" name="available" value="false")
-    .form_input
-      button(type="submit" class="button_small") CONFIRM
+  +hotelForm(hotel)
+//- include mixin with the variable
+  

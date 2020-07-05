@@ -156,3 +156,60 @@ exports.editRemovePost = async (req, res, next) => {
     next(error);
   }
 }
+
+// admin update hotels get route
+exports.updateHotelGet = async (req, res, next) => {
+  try {
+    const hotel = await Hotel.findOne({
+      _id: req.params.hotelId
+    });
+    // res.json(hotel);
+    // render page  add_hotel template to show for the update route
+    res.render('add_hotel', {
+      title: 'Update hotel',
+      hotel
+    })
+  } catch (error) {
+    next(error);
+  }
+}
+
+// post route for updating hotels
+exports.updateHotelPost = async (req, res, next) => {
+  try {
+    const hotelId = req.params.hotelId;
+    const hotel = await Hotel.findByIdAndUpdate(hotelId, req.body, {
+      new: true //gives modified version
+    });
+    res.redirect('/all/${hotelId}')
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.deleteHotelGet = async (req, res, next) => {
+  try {
+    const hotelId = req.params.hotelId;
+    const hotel = await Hotel.findOne({
+      _id: hotelId
+    })
+    res.render('add_hotel', {
+      title: 'Delete hotel',
+      hotel
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+exports.deleteHotelPost = async (req, res, next) => {
+  try {
+    const hotelId = req.params.hotelId;
+    const hotel = await Hotel.findByIdAndRemove({
+      _id: hotelId
+    })
+    res.redirect('/')
+  } catch (error) {
+    next(error)
+  }
+}
