@@ -1,5 +1,7 @@
 const Hotel = require('../models/hotel');
-const { NotExtended } = require('http-errors');
+const {
+  NotExtended
+} = require('http-errors');
 //separate logic
 // exports.homePage = (req,res) => {
 //   res.render('index', { title: 'Lets travel' });
@@ -7,50 +9,77 @@ const { NotExtended } = require('http-errors');
 
 //return all the data from databse with find
 exports.listAllHotels = async (req, res, next) => {
-  try{   
-    const allHotels = await Hotel.find({available:{$eq: true}}); //eq equality mongo, only query available hotels
-    res.render('all_hotels', {title : 'All Hotels', allHotels}); //allHotels is a variable to use inside pug file
+  try {
+    const allHotels = await Hotel.find({
+      available: {
+        $eq: true
+      }
+    }); //eq equality mongo, only query available hotels
+    res.render('all_hotels', {
+      title: 'All Hotels',
+      allHotels
+    }); //allHotels is a variable to use inside pug file
     // res.json(allHotels);
-  }catch(error){
+  } catch (error) {
     next(errors);
   }
 }
 
 // after signup -> next show login
 // exports.signUp = (req, res, next) => {
- //validate user info
+//validate user info
 //   console.log('Sign up middleware');
 //   next();
 // }
 
 // exports.login = (req, res) => {
-  //login
+//login
 //   console.log('login middleware');
 // }
 
 exports.listAllCountries = async (req, res, next) => {
   try {
     const allCountries = await Hotel.distinct('country'); //return distinct countries
-    res.render('all_countries', {title : 'Browse by country' , allCountries}); //render all_countries.pug
-  }catch(error){
+    res.render('all_countries', {
+      title: 'Browse by country',
+      allCountries
+    }); //render all_countries.pug
+  } catch (error) {
     next(error);
   }
 };
 
 // aggregation pipeline to filter home page
 exports.homePageFilters = async (req, res, next) => {
-  try{
-    const hotels = await Hotel.aggregate([
-      { $match : {available: true}}, //available ones only
-      { $sample : {size : 9}} //only return 9 hotels randomly
+  try {
+    const hotels = await Hotel.aggregate([{
+        $match: {
+          available: true
+        }
+      }, //available ones only
+      {
+        $sample: {
+          size: 9
+        }
+      } //only return 9 hotels randomly
     ]);
-    const countries = await Hotel.aggregate([
-      { $group: { _id : '$country' }},  //only return each country once
-      { $sample : {size : 9}} 
+    const countries = await Hotel.aggregate([{
+        $group: {
+          _id: '$country'
+        }
+      }, //only return each country once
+      {
+        $sample: {
+          size: 9
+        }
+      }
     ]);
-    res.render('index', {countries, hotels})
+    res.render('index', {
+      countries,
+      hotels
+    })
     // res.json(countries);
-  }catch(error){
+  } catch (error) {
     next(error);
   }
 };
@@ -59,11 +88,15 @@ exports.homePageFilters = async (req, res, next) => {
 
 //renders admin object 
 exports.adminPage = (req, res) => {
-  res.render('admin', {title : 'Admin'});
+  res.render('admin', {
+    title: 'Admin'
+  });
 };
 
 exports.createHotelGet = (req, res) => {
-  res.render('add_hotel', {title :'Add new hotel'});
+  res.render('add_hotel', {
+    title: 'Add new hotel'
+  });
 };
 
 // hotel is saved as a collection in mongodb 
@@ -74,8 +107,15 @@ exports.createHotelPost = async (req, res, next) => {
   try {
     const hotel = new Hotel(req.body);
     await hotel.save(); //save to database
-    res.redirect(`/all/${hotel._id}`);  //after adding a new hotel redirect to hotel id 
-  }catch(error) {
+    res.redirect(`/all/${hotel._id}`); //after adding a new hotel redirect to hotel id 
+  } catch (error) {
     next(error);
   }
+}
+
+// edit_remove page will be rendered
+exports.editRemoveGet = (req, res) => {
+  res.render('edit_remove', {
+    title: 'Search for hotel to edit or remove'
+  });
 }
