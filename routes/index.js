@@ -19,7 +19,8 @@ router.get('/admin/add', hotelController.createHotelGet);
 //form post route
 router.post('/admin/add', hotelController.createHotelPost);
 // admin edit route with the function editRemoveGet
-router.get('/admin/edit-remove', hotelController.editRemoveGet)
+router.get('/admin/edit-remove', hotelController.editRemoveGet);
+router.post('/admin/edit-remove', hotelController.editRemovePost);
 // add 'next' by adding comma 
 // router.get('/sign-up', hotelController.signUp , hotelController.login);
 // router.get('/log-in', hotelController.login);
