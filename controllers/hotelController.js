@@ -2,6 +2,7 @@ const Hotel = require('../models/hotel');
 const {
   NotExtended
 } = require('http-errors');
+const hotel = require('../models/hotel');
 //separate logic
 // exports.homePage = (req,res) => {
 //   res.render('index', { title: 'Lets travel' });
@@ -118,4 +119,40 @@ exports.editRemoveGet = (req, res) => {
   res.render('edit_remove', {
     title: 'Search for hotel to edit or remove'
   });
+}
+
+exports.editRemovePost = async (req, res, next) => {
+  try {
+    const hotelId = req.body.hotel_id || null;
+    const hotelName = req.body.hotel_name || null;
+
+    // search from database
+    const hotelData = await Hotel.find({
+      $or: [{
+          _id: hotelId
+        },
+        {
+          hotel_name: hotelName
+        }
+      ]
+    }).collation({
+      locale: 'en', //langauge specific
+      strength: 2 //not case sensitive
+    });
+
+    if (hotelData.length > 0) {
+      // shows hotel info as json
+      // res.json(hotelData);
+      res.render('hotel_detail', {
+        title: 'Add / Remove Hotel',
+        hotelData
+      })
+      return;
+    } else {
+      res.redirect('/admin/edit-remove');
+    }
+
+  } catch (error) {
+    next(error);
+  }
 }
