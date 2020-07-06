@@ -16,29 +16,40 @@ app.set('view engine', 'pug');
 //Set up mongoose connection - add connection string
 //https://cloud.mongodb.com/v2/5ef11950c9de941d0dae9d68#security/database/users
 mongoose.connect('mongodb+srv://travel_admin:travel1@cluster0-8kaqo.mongodb.net/<dbname>?retryWrites=true&w=majority', {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-  });
+  useUnifiedTopology: true,
+  useNewUrlParser: true
+});
 //promise library - bluebird
 mongoose.Promise = global.Promise;
 //check errors, on-EventListener and callback 
 mongoose.connection.on('error', (error) => console.error(error.message));
+
 //middleware
+// create local variable 
+app.use((req, res, next) => {
+  // console.log('current request is: ' + req.path);
+  // url is local variable used inside hotel_detail.pug
+  res.locals.url = req.path;
+  next();
+});
+
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

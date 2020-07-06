@@ -8,6 +8,9 @@ mixin hotel(hotel)
       a(href=`/all/${hotel._id}`)
         h3= hotel.hotel_name
       hr
+      if url.startsWith('/all/')  
+        p=hotel.hotel_description
+        hr
       p= `Start rating: ${hotel.star_rating}`
       p= `Country: ${hotel.country}`
       p= `Cost per night: $ ${hotel.cost_per_night}`
