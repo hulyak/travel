@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -15,7 +16,7 @@ app.set('view engine', 'pug');
 
 //Set up mongoose connection - add connection string
 //https://cloud.mongodb.com/v2/5ef11950c9de941d0dae9d68#security/database/users
-mongoose.connect('mongodb+srv://travel_admin:travel1@cluster0-8kaqo.mongodb.net/<dbname>?retryWrites=true&w=majority', {
+mongoose.connect(process.env.DB, {
   useUnifiedTopology: true,
   useNewUrlParser: true
 });

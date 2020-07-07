@@ -53,7 +53,7 @@ exports.listAllCountries = async (req, res, next) => {
 // aggregation pipeline to filter home page
 exports.homePageFilters = async (req, res, next) => {
   try {
-    const hotels = await Hotel.aggregate([{
+    const hotels = Hotel.aggregate([{
         $match: {
           available: true
         }
@@ -64,7 +64,7 @@ exports.homePageFilters = async (req, res, next) => {
         }
       } //only return 9 hotels randomly
     ]);
-    const countries = await Hotel.aggregate([{
+    const countries = Hotel.aggregate([{
         $group: {
           _id: '$country'
         }
@@ -75,9 +75,11 @@ exports.homePageFilters = async (req, res, next) => {
         }
       }
     ]);
+    //wait multiple promises
+    const [filteredCountries, filteredHotels] = await Promise.all([countries, hotels]);
     res.render('index', {
-      countries,
-      hotels
+      filteredCountries,
+      filteredHotels
     })
     // res.json(countries);
   } catch (error) {
