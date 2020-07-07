@@ -14,7 +14,8 @@ router.get("/all", hotelController.listAllHotels);
 // hotel description page
 router.get('/all/:hotel', hotelController.hotelDetail);
 router.get("/countries", hotelController.listAllCountries);
-
+// create country page for each country
+router.get('/countries/:country', hotelController.hotelsByCountry);
 //ADMIN Routes:
 router.get('/admin', hotelController.adminPage);
 router.get('/admin/add', hotelController.createHotelGet);

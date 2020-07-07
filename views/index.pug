@@ -1,5 +1,6 @@
 extends layout
 include mixins/_hotel
+include mixins/_country_list
 
 block content
 
@@ -16,10 +17,7 @@ block content
         a(href="/countries") (see all):
       ul 
         each country in countries
-          li 
-            a(href=`/countries/${country._id}`) #{country._id}
-            img(src=`/images/countries/${country._id}.jpg`)
-  
+          +countryList(country._id)
 
  
 
