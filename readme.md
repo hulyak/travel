@@ -2,6 +2,11 @@ https://repl.it/join/izmzgbpc-hulya95
 
 # Travel App Built with Node/Express, MongoDB, Pug
 
+* A user can login and make bookings for hotels in various countries. User can search for the number of nights, number of guests, as well as star rating and by the price low to high or high to low. 
+* Home page shows random hotels from database, user can find extended view of every hotel's information with the current availability and current price.
+* User can filter the hotels by countries. User can see their bookings. 
+* If the user is admin, admin can add hotels, view bookings and remove them from database.
+
 ## Set Up
 
 :heavy_check_mark: Node/NPM installed
