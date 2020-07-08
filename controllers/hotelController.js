@@ -9,7 +9,7 @@ cloudinary.config({
 });
 
 // store images into a file or directory; but we will save it to Cloudinary 
-const storage = multer.discStorage({});
+const storage = multer.diskStorage({});
 
 const upload = multer({
   storage
@@ -17,9 +17,25 @@ const upload = multer({
 
 exports.upload = upload.single('image'); //upload single image
 
+exports.pushToCloudinary = (req, res, next) => {
+  if (req.file) { //if file exists, admin can edit the description only
+    cloudinary.uploader.upload(req.file.path)
+      .then((result) => {
+        req.body.image = result.public_id;
+        next();
+      })
+      .catch(() => {
+        res.redirect('/admin/add');
+      })
+  } else {
+    next(); //passes to next middleware , createHotelPost
+  }
+}
+
 const {
   NotExtended
 } = require('http-errors');
+
 const hotel = require('../models/hotel');
 //separate logic
 // exports.homePage = (req,res) => {

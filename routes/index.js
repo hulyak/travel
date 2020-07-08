@@ -23,6 +23,8 @@ router.get('/admin/add', hotelController.createHotelGet);
 router.post('/admin/add',
   //add multer middleware
   hotelController.upload,
+  // push images to cloud
+  hotelController.pushToCloudinary,
   hotelController.createHotelPost);
 // admin edit route with the function editRemoveGet
 router.get('/admin/edit-remove', hotelController.editRemoveGet);
