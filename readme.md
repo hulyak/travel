@@ -24,6 +24,14 @@
 
 :heavy_check_mark: Overview -> Connect -> Connect your application -> Connection string Only.
 
+:heavy_check_mark: Create a **Cloudinary** account to store the images in the cloud. 
+
+:heavy_check_mark: Install cloudinary `npm i cloudinary`.
+
+:heavy_check_mark: To use cloudinary, include `enctype = 'multipart/form-data` inside *_hotel_form.pug* file .We can get image files when we make POST requests.
+
+:heavy_check_mark: To handle multipart/form-data, require multer express middleware. 
+`npm i multer`. Multer allows us to store images into memory. Then, we can push the images into Cloudinary. 
 
 
 
@@ -42,4 +50,6 @@
 * MVC Pattern: Model-View-Controllers. Controllers folder generates the Express routes.
 
 * Models folder includes mongoose models. Good for saving data before sending off to the database.
+  
+
  

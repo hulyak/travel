@@ -20,7 +20,10 @@ router.get('/countries/:country', hotelController.hotelsByCountry);
 router.get('/admin', hotelController.adminPage);
 router.get('/admin/add', hotelController.createHotelGet);
 //form post route
-router.post('/admin/add', hotelController.createHotelPost);
+router.post('/admin/add',
+  //add multer middleware
+  hotelController.upload,
+  hotelController.createHotelPost);
 // admin edit route with the function editRemoveGet
 router.get('/admin/edit-remove', hotelController.editRemoveGet);
 router.post('/admin/edit-remove', hotelController.editRemovePost);
