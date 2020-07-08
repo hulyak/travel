@@ -26,11 +26,11 @@ exports.pushToCloudinary = (req, res, next) => {
       })
       .catch(() => {
         res.redirect('/admin/add');
-      })
+      });
   } else {
     next(); //passes to next middleware , createHotelPost
   }
-}
+};
 
 const {
   NotExtended

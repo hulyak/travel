@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
+
 //require controllers
 const hotelController = require("../controllers/hotelController");
 const hotel = require('../models/hotel');
+
 const {
   Router
 } = require('express');
@@ -31,7 +33,10 @@ router.get('/admin/edit-remove', hotelController.editRemoveGet);
 router.post('/admin/edit-remove', hotelController.editRemovePost);
 // admin page update button
 router.get('/admin/:hotelId/update', hotelController.updateHotelGet);
-router.post('/admin/:hotelId/update ', hotelController.updateHotelPost);
+router.post('/admin/:hotelId/update ',
+  hotelController.upload,
+  hotelController.pushToCloudinary,
+  hotelController.updateHotelPost);
 // create delete route
 router.get('/admin/:hotelId/delete', hotelController.deleteHotelGet);
 router.post('/admin/:hotelId/delete', hotelController.deleteHotelPost);
