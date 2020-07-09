@@ -36,7 +36,7 @@ const {
   NotExtended
 } = require('http-errors');
 
-const hotel = require('../models/hotel');
+// const hotel = require('.s./models/hotel');
 //separate logic
 // exports.homePage = (req,res) => {
 //   res.render('index', { title: 'Lets travel' });
