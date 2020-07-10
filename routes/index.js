@@ -18,6 +18,8 @@ router.get('/all/:hotel', hotelController.hotelDetail);
 router.get("/countries", hotelController.listAllCountries);
 // create country page for each country
 router.get('/countries/:country', hotelController.hotelsByCountry);
+router.post('/results', hotelController.searchResults)
+
 //ADMIN Routes:
 router.get('/admin', hotelController.adminPage);
 router.get('/admin/add', hotelController.createHotelGet);
@@ -40,6 +42,8 @@ router.post('/admin/:hotelId/update ',
 // create delete route
 router.get('/admin/:hotelId/delete', hotelController.deleteHotelGet);
 router.post('/admin/:hotelId/delete', hotelController.deleteHotelPost);
+
+
 // add 'next' by adding comma 
 // router.get('/sign-up', hotelController.signUp , hotelController.login);
 // router.get('/log-in', hotelController.login);
