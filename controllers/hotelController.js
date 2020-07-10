@@ -46,9 +46,9 @@ const {
 exports.listAllHotels = async (req, res, next) => {
   try {
     const allHotels = await Hotel.find({
-      available: {
-        $eq: true
-      }
+      // available: {
+      //   $eq: true
+      // }
     }); //eq equality mongo, only query available hotels
     res.render('all_hotels', {
       title: 'All Hotels',
