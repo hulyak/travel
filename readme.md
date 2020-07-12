@@ -1,4 +1,5 @@
-https://repl.it/join/izmzgbpc-hulya95
+
+[![Run on Repl.it](https://repl.it/badge/github/hulyak/travel)](https://repl.it/github/hulyak/travel)
 
 # Travel App Built with Node/Express, MongoDB, Pug
 
